@@ -1,0 +1,36 @@
+services:
+  frontend:
+    image: awesome/webapp
+    build: ./done_first
+    ports:
+      - "8122:3000"
+    environment:
+      - AUTH0_SECRET=2705541827294c0ed49b897efa2993aee94db86bfe66eae37f9fcb6b17531845
+      - AUTH0_BASE_URL=http://localhost:8122
+      - AUTH0_AUDIENCE=http://localhost:8122
+      - AUTH0_ISSUER_BASE_URL=https://dev-yrw0t0fy.us.auth0.com
+      - AUTH0_CLIENT_ID=rzs3vXQcPRgkSpEAiBg9KVi1UoWbIKqJ
+      - AUTH0_CLIENT_SECRET=5J52mmTxhV8EwEX3zRfZTBgrnlXyMPy5EhK3btr5PKFwGm4_N0bIpqZZksRBxvnn
+
+  database:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  rust:
+    build: ./rust_server/rust-docker-web
+    environment:
+      - RUST_BACKTRACE=1
+      - AUTHORITY=https://dev-yrw0t0fy.us.auth0.com/
+      - DATABASE_URL=postgres://postgres:postgres@database/auth0_demo?sslmode=disable
+    ports:
+      - "8111:8080"
+
+volumes:
+  db:
