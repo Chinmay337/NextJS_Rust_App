@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   frontend:
     image: awesome/webapp
@@ -13,11 +15,12 @@ services:
       - AUTH0_CLIENT_SECRET=5J52mmTxhV8EwEX3zRfZTBgrnlXyMPy5EhK3btr5PKFwGm4_N0bIpqZZksRBxvnn
 
   database:
-    image: postgres:14.2-alpine
-    restart: always
+    #    restart: always
+    build: ./database
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth0_demo
     ports:
       - "5432:5432"
     volumes:
