@@ -23,8 +23,8 @@ First build might take a long time for the Rust binary to build
 
 ## App Overview
 
-- **Create account** to login and user can Make and View their Appointments
-- **Admin:** **_login_** `chinmay@bhelke.com` and **_pass_**: `Password123!` to login as Admin and view all Patient Appointments
+- **Create account** and login in order to Create Appointments and View their own Appointments
+- **Admin:** **_login_** `cb.kalz@gmail.com` and **_pass_**: `Password123!` to login as Admin and view all Patient Appointments
 
 ## Components
 
